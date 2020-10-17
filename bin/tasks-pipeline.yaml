@@ -1,0 +1,14 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: tasks-pipeline
+spec:
+  source:
+    git:
+      ref: master
+      uri: 'https://homework-gitea.apps.shared-na4.na4.openshift.opentlc.com/ckongmanlab/aadeploy-final-lab.git'
+    type: Git
+  strategy:
+    type: JenkinsPipeline
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: openshift-tasks/Jenkinsfile
