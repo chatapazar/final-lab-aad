@@ -10,5 +10,5 @@ spec:
     type: Git
   strategy:
     type: JenkinsPipeline
-      jenkinsPipelineStrategy:
-        jenkinsfilePath: openshift-tasks/Jenkinsfile
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: openshift-tasks/Jenkinsfile
