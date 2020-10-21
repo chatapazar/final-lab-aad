@@ -33,9 +33,9 @@ pipeline {
     // Checkout Source Code.
     stage('Checkout Source') {
       steps {
-        //checkout scm
+        checkout scm
 
-        git credentialsId: "ckongman-redhat.com", url: "https://homework-gitea.apps.shared-na4.na4.openshift.opentlc.com/ckongman-redhat.com/openshift-tasks.git"
+        //git credentialsId: "ckongman-redhat.com", url: "https://homework-gitea.apps.shared-na4.na4.openshift.opentlc.com/ckongman-redhat.com/openshift-tasks.git"
 
         dir('openshift-tasks') {
           script {
