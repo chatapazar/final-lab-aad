@@ -262,6 +262,8 @@ pipeline {
               openshift.apply(route)
             }
           }
+          echo "sleep after complete"
+          sleep 60
         }
       }
     }
