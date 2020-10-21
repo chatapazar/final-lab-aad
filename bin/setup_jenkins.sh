@@ -50,6 +50,8 @@ oc create secret generic gogs-secret --from-literal=username=ckongman-redhat.com
 # Build config has to be called 'tasks-pipeline'.
 # Make sure you use your secret to access the repository
 
+#sed -i 's/GUID/${GUID}/g' ./manifests/tasks-pipeline.yaml
+
 oc create -f ./manifests/tasks-pipeline.yaml -n ${GUID}-jenkins
 
 oc set build-secret --source bc/tasks-pipeline gogs-secret -n ${GUID}-jenkins
