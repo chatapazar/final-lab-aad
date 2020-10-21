@@ -17,9 +17,10 @@ pipeline {
     mvnCmd = "source /usr/local/bin/scl_enable && mvn -s ./nexus_settings.xml"
 
     // Images and Projects
-    imageName   = "4976-tasks"
-    devProject  = "4976-tasks-dev"
-    prodProject = "4976-tasks-prod"
+    GUID = "4976"
+    imageName   = "${GUID}-tasks"
+    devProject  = "${GUID}-tasks-dev"
+    prodProject = "${GUID}-tasks-prod"
 
     // Tags
     devTag      = "0.0-0"
@@ -48,7 +49,7 @@ pipeline {
             prodTag = "${version}"
 
             // Patch Source artifactId to include GUID
-            sh "sed -i 's/GUID/4976/g' ./pom.xml"
+            sh "sed -i 's/GUID/${GUID}/g' ./pom.xml"
           }
         }
       }
@@ -89,7 +90,7 @@ pipeline {
             // TBD: Execute Sonarqube Tests
             //      Your project name should be "GUID-${JOB_BASE_NAME}-${devTag}"
             //      Your project version should be ${devTag}
-            sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://homework-sonarqube.apps.shared-na4.na4.openshift.opentlc.com/ -Dsonar.projectName=4976-${JOB_BASE_NAME}-${devTag} -Dsonar.projectVersion=${devTag}"
+            sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://homework-sonarqube.apps.shared-na4.na4.openshift.opentlc.com/ -Dsonar.projectName=${GUID}-${JOB_BASE_NAME}-${devTag} -Dsonar.projectVersion=${devTag}"
 
           }
         }
