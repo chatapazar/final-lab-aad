@@ -216,11 +216,13 @@ pipeline {
 
                 openshift.set("env", "dc/${destApp}", "VERSION=${prodTag}(${destApp})")
                 // Update the Image on the Production Deployment Config
-                def dc = openshift.selector("dc/${destApp}").object()
+                //def dc = openshift.selector("dc/${destApp}").object()
 
-                dc.spec.template.spec.containers[0].image="image-registry.openshift-image-registry.svc:5000/${devProject}/${imageName}:${prodTag}"
+                //dc.spec.template.spec.containers[0].image="image-registry.openshift-image-registry.svc:5000/${devProject}/${imageName}:${prodTag}"
+                
+                openshift.set("image", "dc/${destApp}", "${destApp}=image-registry.openshift-image-registry.svc:5000/${devProject}/${imageName}:${devTag}")
 
-                openshift.apply(dc)
+                //openshift.apply(dc)
 
                 // Recreate Config Map in change config files changed in the source
                 openshift.selector("configmap", "${destApp}-config").delete()
